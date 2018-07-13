@@ -6,5 +6,9 @@ sap.ui.controller("ConferenceRoom.view.Main", {
 //        {
 //            this.getView().addStyleClass("sapUiSizeCompact");
 //        }
+    },
+    onBeforeRendering: function(){
+    	
     }
+    
 });
