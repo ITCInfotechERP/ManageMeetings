@@ -1,0 +1,23 @@
+<core:FragmentDefinition
+	xmlns="sap.m"
+	xmlns:core="sap.ui.core">
+	<ViewSettingsDialog
+		confirm="handleConfirm">
+		<sortItems>
+			<ViewSettingsItem text="Title" key="Title" selected="true" />
+			<ViewSettingsItem text="Createdate" key="Createdate" />
+			<ViewSettingsItem text="Startdate" key="Startdate" />
+			<ViewSettingsItem text="Enddate" key="Enddate" />
+			<ViewSettingsItem text="Starttime" key="Starttime" />
+			<ViewSettingsItem text="Endtime" key="Endtime" />
+			<ViewSettingsItem text="Location" key="Location" />
+			<ViewSettingsItem text="Building" key="Building" />
+			<ViewSettingsItem text="Confroom" key="Confroom" />
+		</sortItems>
+			<!-- <groupItems>
+			<ViewSettingsItem text="Location" key="Location" />
+			<ViewSettingsItem text="Building" key="Building" />
+			<ViewSettingsItem text="Confroom" key="Confroom" />
+		</groupItems> -->
+	</ViewSettingsDialog>
+</core:FragmentDefinition>

@@ -1,9 +1,10 @@
 <core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
-	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" 	xmlns:u="sap.ui.unified"
 	controllerName="ConferenceRoom.view.S1" xmlns:html="http://www.w3.org/1999/xhtml">
 <Page title="{i18n>appTitle}" id="pageId" showSubHeader="false"
 		showNavButton="false" navButtonPress="navPress">
 <content>
+<!-- <CheckBox text="check" selected="true"/> -->
 <!-- <Panel visible="true" id="userPanel" class="panelStyle" expandable="false" expanded="False" headerText="" width="auto">
 	<f:SimpleForm visible="true" id="iduserdtlform" editable="false" layout="ResponsiveGridLayout" title="User Details" 
 	labelSpanXL="3" labelSpanL="3" labelSpanM="3" labelSpanS="12" adjustLabelSpan="false" 
@@ -18,10 +19,11 @@
 	</f:SimpleForm>
 </Panel> -->
 
+
 <IconTabBar id="iconTabBar" select="handleIconTabBarSelect">
 	<items>
-	<IconTabFilter icon="sap-icon://personnel-view" iconColor="Positive" count="" 
-			text="i18n>New Reservation" key="NewReservation" tooltip="New Reservation">
+	<IconTabFilter icon="sap-icon://create-form" iconColor="Positive" count="" 
+			text="{i18n>IconTabFilter1Title}" key="NewReservation" tooltip="{i18n>IconTabFilter1Tooltip}">
 	<content>
 		<Panel id="NewreservPanel" class="panelStyle" expandable="false" expanded="False" headerText="" width="auto">
 			<f:SimpleForm 
@@ -32,7 +34,7 @@
 			class="titleAdjust"
 			editable="true" 
 			layout="ResponsiveGridLayout" 
-			title="" 
+			title="{i18n>FormTitle}" 
 			emptySpanXL="0" 
 			emptySpanL="0" 
 			emptySpanM="0" 
@@ -44,45 +46,65 @@
 						<f:content>
 						
 						<core:Title/>
-						<Label id="idlblusr" text="User Id" />
+						<Label id="idlblusr" text="{i18n>appuser}" />
 						<Text id="idinptusr" text="FIORI_ADMIN" width="100%"/>
-						<Label id="idlbltitle" text="Title"/>
-						<Input id="idinpttitle" liveChange="validate" placeholder="Enter Title ..." width="100%" required="true"/>												
-						<Label id="idlbldes" text="Description"/>
-						<Input id="idinptdes" placeholder="Enter Description ..." width="100%" required="true"/>
-						<Label id="idlbldate" text="Today's Date"/>
-						<DatePicker id="idcreatedate" valueFormat="yyyy-MM-dd" displayFormat="long" change="handleChange" required="true"/>
-						<Label id="idlblbookdate" text="Enter booking Date"/>
-						<DatePicker id="idbookdate" valueFormat="yyyy-MM-dd" displayFormat="long" change="handleChange" required="true"/>
-						<Label id="idlblstart" text="Start Time"/>
-						<TimePicker id="idtimestart" width="100%" 	valueFormat="HH:mm:ss"
-						displayFormat="HH:mm:ss" placeholder="Enter Start Time ..." class="sapUiSmallMarginBottom" required="true"/>
-						<Label id="idlblend" text="End Time"/>
-						<TimePicker id="idtimeend" valueFormat="HH:mm:ss"
-						displayFormat="HH:mm:ss" width="100%" placeholder="Enter End Time ..." class="sapUiSmallMarginBottom" required="true"/>
+						
+						<Label id="idlbltitle" text="{i18n>appusertitle}"/>
+						<Input id="idinpttitle" liveChange="Validation" placeholder="Enter Title ..." width="100%" required="true"/>																		
+						<!-- <Label id="idlbldate" text="{i18n>appusertoday}"/>
+						<DatePicker id="idcreatedate" valueFormat="yyyy-MM-dd" displayFormat="long" change="handleChange"/> -->
+						
+						<Label id="idlblstartdate" text="Start Date"/>
+						<DatePicker id="idstartdate" valueFormat="yyyy-MM-dd" displayFormat="long" change="Validation" required="true"/>
+						
+						<Label id="idlblbookdate" text="{i18n>appuserbkdt}"/>
+						<DatePicker id="idbookdate" valueFormat="yyyy-MM-dd" displayFormat="long" change="Validation" enabled="false"/>
+						
+						<Label id="idlblstart" text="{i18n>appusersttm}"/>
+						<TimePicker id="idtimestart" valueFormat="hh:mm a" minutesStep="15"
+						displayFormat="hh:mm a" placeholder="Enter Start Time ..." class="sapUiSmallMarginBottom" required="true" change="Validation" enabled="true"/>
+						<!-- <TimePicker id="idtimestart" width="100%" 	valueFormat="HH:mm"
+						displayFormat="HH:mm" placeholder="Enter Start Time ..." class="sapUiSmallMarginBottom" required="true" change="Validation" /> -->
+						
+						<Label id="idlblend" text="{i18n>appuserendtm}"/>
+						<TimePicker id="idtimeend" valueFormat="hh:mm a" minutesStep="15"
+						displayFormat="hh:mm a" width="100%" placeholder="Enter End Time ..." class="sapUiSmallMarginBottom" required="true" change="Validation" enabled="true"/>
+						
+						<!-- <TimePicker id="idtimeend" valueFormat="HH:mm"
+						displayFormat="HH:mm" width="100%" placeholder="Enter End Time ..." class="sapUiSmallMarginBottom" required="true" change="Validation" /> -->
+						
+						<Label/>
+						<CheckBox id="idcheckbox" text="All Day Event" selected="false" activeHandling="true" select="handleSelect"/>
 						
 						<core:Title/>
 						<Label />
 						<Text />
-						<Label id="idlbllocation" text="Location" required="true"/>
+						<Label id="idlbllocation" text="{i18n>appusersltlctn}" required="true"/>
 						<Select id="idlocationselect" change="onLocationSelect"
 						forceSelection="true" items="{localModel>/LocationsData}">
 							<core:Item key="{localModel>Location}" text="{localModel>Location}"/>
 						</Select>
-						<Label id="idlblbuilding" text="Building" required="true"/>
+						
+						<Label id="idlblbuilding" text="{i18n>appusersltbldng}" required="true"/>
 						<Select enabled="false" id="idBuildingselect" change="onBuildingSelect"
 						forceSelection="true" items="{localModel>/BuildingData}">
 							<core:Item key="{localModel>Building}" text="{localModel>Building}"/>
 						</Select>
-						<Label id="idlblroom" text="Conf Rooms" required="true"/>
-						<Select enabled="false" id="idroomselect" change="onroomSelect"
-						forceSelection="true" items="{localModel>/ConfroomData}">
+						
+						<Label id="idlblroom" text="{i18n>appusersltroom}" required="true"/>
+						<Select enabled="false" id="idroomselect"
+						forceSelection="true" items="{localModel>/ConfroomData}" change="Validation">
 							<core:Item key="{localModel>Confroom}" text="{localModel>Confroom}"/>
 						</Select>
-						<Label id="idemail" text="Email Id"/>
-						<Input  type="Email" placeholder="Enter Email ..." id="idinputemail" required="true"/>
-						<Label id="idlblphno" text="Contact Number"/>
-						<Input type="Number" placeholder="Enter Contact Number ..." id="idinptpn" required="true"/>
+						
+						<Label id="idemail" text="{i18n>appuserEmail}"/>
+						<Input  type="Email" placeholder="Enter Email ..." id="idinputemail"/>
+						
+						<Label id="idlblphno" text="{i18n>appusercntnubr}"/>
+						<Input type="Number" placeholder="Enter Contact Number ..." id="idinptpn"/>
+						
+						<Label id="idlbldes" text="{i18n>appuserdes}"/>
+						<TextArea id="idinptdes" placeholder="Enter Description ..." growingMaxLines="7" width="100%"/>
 						<!-- <Label />
 						<Button id="idchkavl" text="Check Availability" press="onPresscheck"/> -->
 						</f:content>
@@ -125,17 +147,20 @@
 	</IconTabFilter>
 		
 	<IconTabSeparator/>
+
 		
-	<IconTabFilter icon="sap-icon://compare" iconColor="Critical" text="My Reservation" key="Reservation" tooltip="New Reservation">
+	<IconTabFilter icon="sap-icon://group" iconColor="Critical" text="{i18n>IconTabFilter2Title}" key="Reservation" tooltip="{i18n>IconTabFilter2Tooltip}">
 		<content>
 			<Panel width="auto">
-			<Table id="idtable" mode="SingleSelectLeft" items="{/ReservationSet}">
+			<Table id="idtable" mode="SingleSelectLeft" items="{localModel>/tableData}" fixedLayout = "false" class = "columnAlignment" selectionChange = "onTableSelected">
 			<headerToolbar>
 				<Toolbar>
 				<content>
-				<Title text="Current Bookings" level="H2"/>
+				<Title text="{i18n>TableTitle}" level="H2"/>
 				<ToolbarSpacer/>
-				<SearchField width="40%" id="searchId" placeholder="Search by date" search="handleChangeSearch"/>
+				<SearchField width="50%" id="searchId" placeholder="Search by Title, Location, Building, Conference room" search="handleChangeSearch"/>
+				<Button icon="sap-icon://sort" tooltip="SSort By" press="onpresssorter"/>
+				<!-- <Button icon="sap-icon://filter" tooltip="Filter By" press="onpressfilter"/> -->
 			</content>
 			</Toolbar>
 			</headerToolbar>
@@ -147,26 +172,30 @@
 					</Toolbar>
 				</infoToolbar> -->
 		<columns>
-			<Column><Text text="Created Date"/></Column>
-			<Column><Text text="BookDate"/></Column>
-			<Column><Text text="Start Time"/></Column>
-			<Column><Text text="End Time"/></Column>
-			<Column><Text text="Location"/></Column>
-			<Column><Text text="Building"/></Column>
-			<Column><Text text="Conf Room"/></Column>
-			<Column><Text text="Email"/></Column>
+			<Column demandPopin="true"><Text text="{i18n>columntitle}"/></Column>
+			<Column demandPopin="true"><Text text="{i18n>columncreateddate}"/></Column>
+			<Column demandPopin="true"><Text text="{i18n>columnstartdate}"/></Column>
+			<Column demandPopin="true"><Text text="{i18n>columnbookddate}"/></Column>
+			<Column demandPopin="true"><Text text="{i18n>columnstrttime}"/></Column>
+			<Column demandPopin="true"><Text text="{i18n>columnendtime}"/></Column>
+			<Column demandPopin="true"><Text text="{i18n>columnlction}"/></Column>
+			<Column demandPopin="true"><Text text="{i18n>columnbuldng}"/></Column>
+			<Column demandPopin="true"><Text text="{i18n>columnroom}"/></Column>
+			<!-- <Column><Text text="{i18n>columnmail}"/></Column> -->
 		</columns>
 		<items>
 			<ColumnListItem>
 				<cells>
-					<Text text="{Createdate}" wrapping="false"/>
-					<Text text="{Bookdate}" wrapping="false"/>
-					<Text text="{Starttime}" wrapping="false"/>
-					<Text text="{Endtime}" wrapping="false"/>
-					<Text text="{Location}" wrapping="false"/>
-					<Text text="{Building}" wrapping="false"/>
-					<Text text="{Confroom}" wrapping="false"/>
-					<Text text="{Email}" wrapping="false"/>
+					<Text text="{localModel>Title}" wrapping="false"/>
+					<Text text="{ path:'localModel>Createdate',formatter: 'ConferenceRoom.util.Formatter.changeDateFormat'}" wrapping="false"/>
+				<Text text="{ path:'localModel>Startdate',formatter: 'ConferenceRoom.util.Formatter.changeDateFormat'}" wrapping="false"/>
+				<Text text="{ path:'localModel>Enddate',formatter: 'ConferenceRoom.util.Formatter.changeDateFormat'}" wrapping="false"/>
+					<Text text="{ path:'localModel>Starttime',formatter: 'ConferenceRoom.util.Formatter.changeTimeFormat'}" wrapping="false"/>
+					<Text text="{ path:'localModel>Endtime',formatter: 'ConferenceRoom.util.Formatter.changeTimeFormat'}" wrapping="false"/>
+					<Text text="{localModel>Location}" wrapping="false"/>
+					<Text text="{localModel>Building}" wrapping="false"/>
+					<Text text="{localModel>Confroom}" wrapping="false"/>
+					<!-- <Text text="{Email}" wrapping="false"/> -->
 				</cells>
 			</ColumnListItem>
 		</items>
@@ -174,6 +203,59 @@
 	</Panel>
 	</content>
 	</IconTabFilter>
+	
+	<IconTabSeparator/>
+	
+	<IconTabFilter icon="sap-icon://manager" iconColor="" count="" 
+			text="All Reservations" key="AllReservations">
+	<content>
+		<PlanningCalendar
+			id="PC1"
+			startDate="{path: '/startDate'}"
+			rows="{path: '/people'}"
+			appointmentsVisualization="Filled"
+			appointmentSelect="handleAppointmentSelect"
+			showEmptyIntervalHeaders="false"
+			showWeekNumbers="true">
+			<toolbarContent>
+				<Title text="Title" titleStyle="H4"/>
+			</toolbarContent>
+			<rows>
+				<PlanningCalendarRow
+					icon="{pic}"
+					title="{name}"
+					text="{role}"
+					appointments="{path : 'appointments', templateShareable: 'true'}"
+					intervalHeaders="{path: 'headers', templateShareable: 'true'}">
+					<customData>
+						<core:CustomData key="emp-name" value="{name}" writeToDom="true"/>
+					</customData>
+					<appointments>
+						<u:CalendarAppointment
+							startDate="{start}"
+							endDate="{end}"
+							icon="{pic}"
+							title="{title}"
+							text="{info}"
+							type="{type}"
+							tentative="{tentative}">
+						</u:CalendarAppointment>
+					</appointments>
+					<intervalHeaders>
+						<u:CalendarAppointment
+							startDate="{start}"
+							endDate="{end}"
+							icon="{pic}"
+							title="{title}"
+							type="{type}">
+						</u:CalendarAppointment>
+					</intervalHeaders>
+				</PlanningCalendarRow>
+			</rows>
+		</PlanningCalendar>
+	</content>
+	</IconTabFilter>
+	
 	</items>
 	</IconTabBar>
 </content>
@@ -181,12 +263,14 @@
 <footer>
 	<Toolbar>
 		<ToolbarSpacer/>
-	<!--	<Button icon="sap-icon://add-filter" tooltip="Add Filter" press="FilterbtnPress" type="Accept"/>-->
-			<Button visible="true" type="Accept" id="idcheckbtn" text="Check Availability" press="onPressCheck"/>
-			<Button visible="true" type="Emphasized" id="idbookbtn" text="Book" press="onPressBook"/>
-			<Button visible="false" type="Reject" id="iddeletebtn" text="Delete" press="onPressDelete"/>
-			<Button visible="false" type="Accept" id="idprintbtn" text="Print" press="onPressPrint"/>
-			<Button visible="false" type="Emphasized" id="idmailbtn" text="E-Mail" press="onPressEmail"/>						
+	<!--	<Button icon="sap-icon://print" tooltip="Add Filter" press="FilterbtnPress" type="Accept"/>-->
+			<Button visible="true" type="Accept" id="idcheckbtn" text="{i18n>checkbtnavilble}" press="onPressCheck" enabled = "{localModel>/BookBtn}" tooltip="{i18n>checkbttooltip}"/>
+			<Button visible="true" type="Emphasized" id="idbookbtn" text="{i18n>BookBtn}" press="onPressBook" tooltip="{i18n>Bookbtntooltip}" enabled = "{localModel>/BookBtnenabled}"/>
+			<Button visible="false" type="Accept" id="idupdatebtn" text="{i18n>updteBtn}" press="onPressUpdate" tooltip="{i18n>updtebtntooltip}" enabled = "{localModel>/DeleteBtn}"/>
+			<Button visible="false" type="Reject" id="iddeletebtn" text="{i18n>DlteBtn}" press="onPressDelete" tooltip="{i18n>Dltebtntooltip}" enabled = "{localModel>/DeleteBtn}"/>
+			<Button visible="false" type="Emphasized" id="idmailbtn" icon="sap-icon://email" press="onPressEmail" tooltip="{i18n>Emailbtntooltip}" enabled = "{localModel>/DeleteBtn}"/>					
+			<Button visible="false" type="Accept" id="idprintbtn" icon="sap-icon://print" press="onPressPrint" tooltip="{i18n>Prntbtntooltip}" enabled = "{localModel>/DeleteBtn}"/>
+									
 	</Toolbar>
 </footer>
 </Page>

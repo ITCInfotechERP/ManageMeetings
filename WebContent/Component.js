@@ -4,52 +4,58 @@ jQuery.sap.require("sap.ui.core.routing.History");
 jQuery.sap.require("sap.m.routing.RouteMatchedHandler");
 
 sap.ui.core.UIComponent.extend("ConferenceRoom.Component", {
-	metadata : {
-		"name" : "ConferenceRoom",
-		"version" : "1.1.0-SNAPSHOT",
-		"library" : "ConferenceRoom",
-		"includes" : [],
-		"dependencies" : {
-			"libs" : [ "sap.m", "sap.ui.layout" ],
-			"components" : []
-		},
-		"config" : {
+	
+	metadata: {
+        "version": "1.0.0",
+        "rootView": {
+            viewName: "ConferenceRoom.view.Main",
+            type: sap.ui.core.mvc.ViewType.XML
+        },
+        "dependencies": {
+            "libs": ["sap.ui.core", "sap.m", "sap.ui.layout"]
+        },
+        "config" : {
 			resourceBundle : "i18n/messageBundle.properties",
 			serviceConfig : {
 				name : "",
 				serviceUrl:"../ConferenceRoom/proxy/sap/opu/odata/sap/ZCONFROOMBOOKING_SRV/" ,
 
-			} 
+			}, 
 		},
-		routing : {
-			config : {
-				"viewType" : "XML",
-				"viewPath" : "ConferenceRoom.view",
-				"targetControl" : "fioriContent",
-				"targetAggregation" : "pages",
-				"clearTarget" : false
-			},
-			routes : [ {
-				pattern : "",
-				name : "S1",
-				view : "S1"
-			}
-
-			]
-		}
-	},
-	createContent : function() {
-		var oViewData = {
-				component : this
-		};
-
-		return sap.ui.view({
-			viewName : "ConferenceRoom.view.Main",
-			type : sap.ui.core.mvc.ViewType.XML,
-			viewData : oViewData
-		});
-	},
-
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "ConferenceRoom.view",
+                "controlId": "fioriContent",
+                "controlAggregation": "pages"
+            },
+              "routes": [
+                     {
+                         "pattern": "",
+                         "name": "Login",
+                         "target": "Login"
+                     },
+                     {
+                         "pattern": "ConfRoom",
+                         "name": "S1",
+                         "target": "S1"
+                     }
+                     
+            ],
+            "targets": {
+                "Login": {
+                      "viewName": "Login"
+                },
+                "S1": {
+                    "viewName": "S1"
+              }                    
+                
+            },
+        }
+    
+},
+	
 	init : function() {
 		sap.ui.core.UIComponent.prototype.init.apply(this, arguments);
 		var sRootPath = jQuery.sap.getModulePath("ConferenceRoom");

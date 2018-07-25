@@ -1,0 +1,55 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	
+	<Dialog title="Print Details" width = "500px" height = "600px">
+		<content>
+		<f:SimpleForm id="idprintform" labelMinWidth="192" adjustLabelSpan="true" maxContainerCols="2" editable="true"
+			layout="ResponsiveGridLayout" title="" labelSpanL="3" labelSpanM="3" emptySpanL="4" 
+			emptySpanM="4" columnsL="2" columnsM="2">
+			<f:content>
+				<Label text="Title"/>
+				<Text id="id" text="{/dialogArray/0/Title}"/>	
+				<Label text="Created Date:"/>
+				<Text id="id1" text="{/dialogArray/0/Createdate}"/>	
+				<Label text="Start Date"/>
+				<Text id="id11" text="{/dialogArray/0/Startdate}"/>									
+				<Label text="End Date"/>
+				<Text id="id2" text="{/dialogArray/0/Enddate}"/>
+				<Label text="Start Time"/>
+				<Text id="id3" text="{/dialogArray/0/Starttime}"/>
+				<Label text="End Time"/>
+				<Text id="id4" text="{/dialogArray/0/Endtime}"/>		
+				<Label text="Location"/>
+				<Text id="id5" text="{/dialogArray/0/Location}"/>
+				<Label text="Building"/>
+				<Text id="id6" text="{/dialogArray/0/Building}"/>
+				<Label text="Conference Room"/>
+				<Text id="id7" text="{/dialogArray/0/Confroom}"/>
+				<Label text="E-Mail"/>
+				<Text id="id8" text="{/dialogArray/0/Email}"/>
+				<Label text="Contact Number"/>
+				<Text id="id9" text="{/dialogArray/0/Contactnum}"/>
+				
+						
+		</f:content>
+		</f:SimpleForm>
+		
+		<!-- <VBox id="idprintform">	
+		
+		<HBox>
+		<Label text="Title:"/>
+		<Text id="id" text="{/dialogArray/0/Title}"/>
+		
+		</HBox>
+		</VBox> -->
+		
+		</content>
+		<buttons>
+			<Button text="Submit Print" press="onBtnprintSubmit"/>
+			<Button text="Close" press="onClose" />
+		</buttons>
+		
+	</Dialog>
+	
+	
+	
+</core:FragmentDefinition>

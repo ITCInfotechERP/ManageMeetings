@@ -1,0 +1,67 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+
+<Dialog title="Update Details" width = "500px" height = "600px">
+<!-- <VBox class="sapUiSmallMargin"> -->
+<content>
+<f:SimpleForm id="idupdateform" labelMinWidth="192" adjustLabelSpan="true" maxContainerCols="2" editable="true"
+			layout="ResponsiveGridLayout" title="" labelSpanL="3" labelSpanM="3" emptySpanL="4" 
+			emptySpanM="4" columnsL="2" columnsM="2">
+			<f:content>
+				
+				<Label text="Title"/>
+				<Input id="idinputtitlefrag" value="{/dialogArray/0/Title}"/>	
+				<!-- <Label text="Created Date"/>
+				<DatePicker id="idcreatedatefrag" valueFormat="yyyy-MM-dd" displayFormat="long" value="{/dialogArray/0/Createdate}"/> -->	
+				<Label text="Start Date"/>
+				<DatePicker id="idstrtdatefrg" valueFormat="yyyy-MM-dd" displayFormat="long" value="{/dialogArray/0/Startdate}"/>									
+				<Label text="End Date"/>
+				<DatePicker id="idenddtefrag" valueFormat="yyyy-MM-dd" displayFormat="long" value="{/dialogArray/0/Enddate}"/>
+				<Label text="Start Time"/>
+				<TimePicker id="idtimestartfrag" width="100%" 	valueFormat="hh:mm a"
+					displayFormat="hh:mm a" placeholder="Enter Start Time ..." class="sapUiSmallMarginBottom" value="{/dialogArray/0/Starttime}"/>
+				<Label text="End Time"/>
+				<TimePicker id="idtimeendfrag" valueFormat="hh:mm a"
+						displayFormat="hh:mm a" width="100%" placeholder="Enter End Time ..." class="sapUiSmallMarginBottom" value="{/dialogArray/0/Endtime}"/>		
+				
+				<CheckBox id="idcheckboxfrag" text="All Day Event" selected="{/dialogArray/0/Alldayevent}" activeHandling="true" select="handleSelectfrag"/>
+				
+				
+				<Label text="Location"/>
+				<Select id="idlocationselectfrag" change="onLocationSelect"
+						forceSelection="true" selectedKey="{/dialogArray/0/Location}" items="{localModel>/LocationsData}">
+							<core:Item key="{localModel>Location}" text="{localModel>Location}"/>
+				</Select>
+				<!-- <Input id="id5" value="{/dialogArray/0/Location}"/> -->
+				<Label text="Building"/>
+				<Select enabled="true" id="idBuildingselectfrag" change="onBuildingSelect"
+				forceSelection="true" selectedKey="{/dialogArray/0/Building}" items="{localModel>/BuildingData}">
+							<core:Item key="{localModel>Building}" text="{localModel>Building}"/>
+				</Select>
+				<!-- <Input id="id6" value="{/dialogArray/0/Building}"/> -->
+				<Label text="Conference Room"/>
+				<Select enabled="true" id="idroomselectfrag"
+						forceSelection="true" change="onConfroomSelect" selectedKey="{/dialogArray/0/Confroom}" items="{localModel>/ConfroomData}" >
+							<core:Item key="{localModel>Confroom}" text="{localModel>Confroom}"/>
+				</Select>
+				
+				
+				<!-- <Input id="id7" value="{/dialogArray/0/Confroom}"/> -->
+				<Label text="E-Mail"/>
+				<Input id="idmailfrag" value="{/dialogArray/0/Email}"/>
+				<Label text="Contact Number"/>
+				<Input id="idconnumfrag" value="{/dialogArray/0/Contactnum}"/>
+				
+						
+		</f:content>
+		</f:SimpleForm>
+
+
+</content>
+		<buttons>
+			<Button text="Submit" press="onBtnupdateSubmit"/>
+			<Button text="Close" press="onClose" />
+		</buttons>
+		
+</Dialog>
+<!-- </VBox> -->
+</core:FragmentDefinition>
