@@ -48,6 +48,7 @@
 						<core:Title/>
 						<Label id="idlblusr" text="{i18n>appuser}" />
 						<Text id="idinptusr" text="FIORI_ADMIN" width="100%"/>
+
 						
 						<Label id="idlbltitle" text="{i18n>appusertitle}"/>
 						<Input id="idinpttitle" liveChange="Validation" placeholder="Enter Title ..." width="100%" required="true"/>																		
