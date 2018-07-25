@@ -1,6 +1,6 @@
 sap.ui.controller("ConferenceRoom.view.Main", {
 
-   onInit : function()
+    /*onInit : function()
     {
 //        if (sap.ui.Device.support.touch === false)
 //        {
@@ -9,6 +9,7 @@ sap.ui.controller("ConferenceRoom.view.Main", {
     },
     onBeforeRendering: function(){
     	
-    }
+    }*/
     
+//>>>>>>> master
 });
