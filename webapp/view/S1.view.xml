@@ -1,0 +1,444 @@
+<!-- <mvc:View 
+controllerName="ConferenceRoom.controller.S1" 
+xmlns:html="http://www.w3.org/1999/xhtml" 
+xmlns:mvc="sap.ui.core.mvc"
+displayBlock="true" 
+xmlns="sap.m" 
+xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified"> -->
+
+<core:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc"
+	xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" 	xmlns:unified="sap.ui.unified"
+	controllerName="ConferenceRoom.controller.S1" xmlns:html="http://www.w3.org/1999/xhtml">
+<Page title="{i18n>appTitle}" id="pageId" showSubHeader="false"
+		showNavButton="false" navButtonPress="navPress">
+		
+		<customHeader>
+		<Bar class="customHeaderStyle">
+<contentLeft>
+        <Image src="img/itcLogo.png" class = "img"/>
+</contentLeft>
+<contentMiddle>
+<Label text = "{i18n>appTitle}" class="headerText" />
+</contentMiddle>
+	<contentRight>
+	<HBox alignItems="Center">
+	<Text text="{i18n>appUser}" class="headerText"/>
+	<Text id="idinptusr" text="FIORI_ADMIN" class="headerText"/>
+	</HBox>
+	<!-- <Button id ="openmenu" icon= "sap-icon://menu2" press = "actionsheet"/> -->
+	</contentRight>
+	</Bar>
+    </customHeader> 
+		
+<content>
+
+<!-- <Link id="idlink" href="https://www.google.com" text="Click" target="_blank" press="presslink"/> -->
+
+<IconTabBar id="iconTabBar" select="handleIconTabBarSelect">
+	<items>
+	<IconTabFilter icon="sap-icon://group" iconColor="Positive" text="{i18n>IconTabFilter2Title}" key="MyReservations" tooltip="{i18n>IconTabFilter2Tooltip}">
+		<content>
+			<Panel width="auto">
+			
+			<Table id="idtable" mode="SingleSelectLeft" visibleRowCount="10" items="{localModel>/tableData}" fixedLayout = "false" class = "columnAlignment" selectionChange = "onTableSelected">
+			<headerToolbar minScreenWidth="Mobile"
+				demandPopin="true"
+				hAlign="End">
+				<Toolbar minScreenWidth="Mobile"
+				demandPopin="true"
+				hAlign="End">
+				<content>
+				<Title text="{i18n>TableTitle}" level="H2"/>
+				<ToolbarSpacer/>
+				
+				<SearchField width="50%" id="searchId" placeholder="{i18n>searchField}" search="handleChangeSearch"/>
+				<Button icon="sap-icon://action-settings" press="onPersoButtonPressed" tooltip="Personalization Setting"/>
+				<Button icon="sap-icon://sort" tooltip="{i18n>sort}" press="onpresssorter"/>
+				<!-- <Button visible="true" id="idmailbtn" icon="sap-icon://email" press="onPressEmail" tooltip="{i18n>Emailbtntooltip}" enabled = "{localModel>/DeleteBtn}"/> -->				
+				<Button visible="true" id="idprintbtn" icon="sap-icon://print" press="onPressPrint" tooltip="{i18n>Prntbtntooltip}" enabled = "{localModel>/DeleteBtn}"/>
+				<!-- <Button icon="sap-icon://filter" tooltip="Filter By" press="onpressfilter"/> -->
+			</content>
+			</Toolbar>
+			</headerToolbar>
+				
+		<columns>
+			<Column id="titlecol" demandPopin="true"><Text text="{i18n>columntitle}"/></Column>
+			<Column id="createddatecol" demandPopin="true"><Text text="{i18n>columncreateddate}"/></Column>
+			<Column id="startdatecol" demandPopin="true"><Text text="{i18n>columnstartdate}"/></Column>
+			<Column id="bookcol" demandPopin="true"><Text text="{i18n>columnbookddate}"/></Column>
+			<Column id="strttimecol" demandPopin="true"><Text text="{i18n>columnstrttime}"/></Column>
+			<Column id="endtimecol" demandPopin="true"><Text text="{i18n>columnendtime}"/></Column>
+			<Column id="lctioncol" demandPopin="true"><Text text="{i18n>columnlction}"/></Column>
+			<Column id="buldngcol" demandPopin="true"><Text text="{i18n>columnbuldng}"/></Column>
+			<Column id="roomcol" demandPopin="true"><Text text="{i18n>columnroom}"/></Column>
+			<Column id="meetingidcol" demandPopin="true" visible="false"><Text text="Meeting Id"/></Column>
+			<Column id="Descriptioncol" demandPopin="true" visible="false"><Text text="Description"/></Column>
+			<Column id="rpatterncol" demandPopin="true" visible="false"><Text text="Recurrence pattern"/></Column>
+			<Column id="rrulecol" demandPopin="true" visible="false"><Text text="Recurrence rule"/></Column>
+			<Column id="connumcol" demandPopin="true" visible="false"><Text text="Contact Number"/></Column>
+			
+		</columns>
+		<items>
+			<ColumnListItem>
+				<cells>
+					<Text text="{localModel>Title}" wrapping="false"/>
+					<Text text="{ path:'localModel>Createdate',formatter: 'ConferenceRoom.util.Formatter.changeDateFormat'}" wrapping="false"/>
+				<Text text="{ path:'localModel>Startdate',formatter: 'ConferenceRoom.util.Formatter.changeDateFormat'}" wrapping="false"/>
+				<Text text="{ path:'localModel>Enddate',formatter: 'ConferenceRoom.util.Formatter.changeDateFormat'}" wrapping="false"/>
+					<Text text="{ path:'localModel>Starttime',formatter: 'ConferenceRoom.util.Formatter.changeTimeFormat'}" wrapping="false"/>
+					<Text text="{ path:'localModel>Endtime',formatter: 'ConferenceRoom.util.Formatter.changeTimeFormat'}" wrapping="false"/>
+					<Text text="{localModel>Location}" wrapping="false"/>
+					<Text text="{localModel>Building}" wrapping="false"/>
+					<Text text="{localModel>Confroom}" wrapping="false"/>
+					<Text text="{localModel>Meetingid}" wrapping="false"/>
+					<Text text="{localModel>Description}" wrapping="false"/>
+					<Text text="{localModel>Rpattern}" wrapping="false"/>
+					<Text text="{localModel>Rrule}" wrapping="false"/>
+					<Text text="{localModel>Contactnum}" wrapping="false"/>
+					
+				</cells>
+			</ColumnListItem>
+		</items>
+	</Table>
+	</Panel>
+	</content>
+	</IconTabFilter>
+	
+	<IconTabSeparator/>
+	
+	<IconTabFilter icon="sap-icon://create-form" iconColor="Positive" count="" 
+			text="{i18n>IconTabFilter1Title}" key="NewReservation" tooltip="{i18n>IconTabFilter1Tooltip}">
+	<content>
+		<Panel id="NewreservPanel" expandable="false" expanded="False" headerText="" width="auto">
+			<f:SimpleForm 
+			id="idnewresform" 
+			labelMinWidth="192" 
+			adjustLabelSpan="true" 
+			maxContainerCols="4" 
+			editable="true" 
+			layout="ResponsiveGridLayout" 
+			title="" 
+			emptySpanXL="0" 
+			emptySpanL="0" 
+			emptySpanM="0" 
+			emptySpanS="0"
+			columnsXL="4" 
+			columnsL="2" 
+			columnsM="2" 
+			class="titleAdjust"
+			singleContainerFullSize="false">
+			
+						<f:content>						
+						<core:Title/>
+						<Label />
+						<CheckBox id="idcheckbox" text="All Day Event" selected="false" activeHandling="true" select="handleSelect"> 
+						<layoutData><l:GridData span="L3 M3 S6" /></layoutData>
+						</CheckBox>
+						<CheckBox id="idreccheck" text="Recurrence" select="handleSelectRecurrence">
+						<layoutData><l:GridData span="L3 M3 S5" /></layoutData>
+						</CheckBox>
+						<!-- <Label text="User Id"/>
+						<Text id="idinptusr" text="FIORI_ADMIN"/> -->
+						<Label id="idlbltitle" text="{i18n>appusertitle}"/>
+						<Input id="idinpttitle" maxLength="100" liveChange="Validation" placeholder="{i18n>titlePlace}" width="100%" required="true"/>																		
+						<Label id="idlbldes" text="{i18n>appuserdes}"/>
+						<TextArea id="idinptdes" placeholder="{i18n>desplace}" maxLength="600" width="100%"/>
+						<Label id="idlblstartdate" text="{i18n>startdate}"/>
+						<DatePicker id="idstartdate" valueFormat="yyyy-MM-dd" displayFormat="long" change="Validation" required="true"/>
+						<Label id="idlblbookdate" text="{i18n>appuserbkdt}"/>
+						<DatePicker id="idbookdate" valueFormat="yyyy-MM-dd" displayFormat="long" change="Validation" enabled="false"/>
+						<!-- <Label/>
+						<Button text="Recurrence Pattern" press="onPressrec"/> -->
+					
+						<Label/>
+						<RadioButton id="idradio1" groupName="GroupA" text="Daily" visible="false" select="radio1Select">
+						<layoutData><l:GridData span="L3 M3 S4" /></layoutData>
+						</RadioButton>						
+						<RadioButton id="idradio2" groupName="GroupA" text="Weekly" visible="false" select="radio2Select">
+						<layoutData><l:GridData span="L3 M3 S4" /></layoutData>
+						</RadioButton>
+						<Label/>
+						<RadioButton id="idradiodaily1" selected="true" groupName="GroupB" text="Every" visible="false" select="radiodaily1Select">
+						<layoutData><l:GridData span="L3 M3 S4" /></layoutData>
+						</RadioButton>
+						<Input id="iddailyinput" value="1" visible="false">
+						<layoutData><l:GridData span="L1 M1 S2" /></layoutData>
+						</Input>
+						<Text id="idtxtinput" text="day" visible="false">
+						<layoutData><l:GridData span="L1 M1 S2" /></layoutData>
+						</Text>
+						<Label/>
+						<RadioButton id="idradiodaily2" groupName="GroupB" text="Every WeekDay" visible="false" select="radiodaily2Select"/>
+						<Label/>
+						
+						<Text id="idweektext" text="Every" visible="false">
+						<layoutData><l:GridData span="L1 M1 S2" /></layoutData>
+						</Text>
+						<Input id="idtextweek" value="1" visible="false">
+						<layoutData><l:GridData span="L1 M1 S2" /></layoutData>
+						</Input>
+						<Text id="idtextweekon" text="week on" visible="false">
+						<layoutData><l:GridData span="L2 M2 S5" /></layoutData>
+						</Text>
+						<Text/>
+						<Label/>
+						<CheckBox id="idmon" text="Monday" visible="false">
+						<layoutData><l:GridData span="L3 M3 S5" /></layoutData>
+						</CheckBox>
+						<CheckBox id="idtue" text="Tuesday" visible="false">
+						<layoutData><l:GridData span="L3 M3 S5" /></layoutData>
+						</CheckBox>
+						<Label/>
+						<CheckBox id="idwed" text="Wednesday" visible="false">	
+						<layoutData><l:GridData span="L3 M3 S5" /></layoutData>
+						</CheckBox>
+						<CheckBox id="idthu" text="Thursday" visible="false">
+						<layoutData><l:GridData span="L3 M3 S5" /></layoutData>
+						</CheckBox>
+						<Label/>			
+						<CheckBox id="idfri" text="Friday" visible="false">
+						<layoutData><l:GridData span="L3 M3 S5" /></layoutData>
+						</CheckBox>
+						<CheckBox id="idsat" text="Saturday" visible="false">
+						<layoutData><l:GridData span="L3 M3 S5" /></layoutData>
+						</CheckBox>
+						<Label/>
+						<CheckBox id="idsun" text="Sunday" visible="false"/>
+								
+						<core:Title/>
+						<Label id="idlblstart" text="{i18n>appusersttm}"/>		
+						<TimePicker id="idtimestart" valueFormat="hh:mm a" minutesStep="15"
+						displayFormat="hh:mm a" placeholder="{i18n>starttimeplace}" required="true" change="ValidationEnddate" enabled="true"/>
+						<Label id="idlblend" text="{i18n>appuserendtm}"/>
+						<TimePicker id="idtimeend" valueFormat="hh:mm a" minutesStep="15" change="ValidationsingleEnddate"
+						displayFormat="hh:mm a" width="100%" placeholder="{i18n>endtimeplace}" class="sapUiSmallMarginBottom" required="true" enabled="true"/>
+					   
+					    <Label id="idlbllocation" text="{i18n>appusersltlctn}"/>
+						<Select id="idlocationselect" change="onLocationSelect"
+						forceSelection="true" items="{localModel>/LocationsData}">
+							<core:Item key="{localModel>Location}" text="{localModel>Location}"/>
+						</Select>
+						
+						<Label id="idlblbuilding" text="{i18n>appusersltbldng}"/>
+						<Select enabled="true" id="idBuildingselect" change="onBuildingSelect"
+						forceSelection="true" items="{localModel>/BuildingData}">
+							<core:Item key="{localModel>Building}" text="{localModel>Building}"/>
+						</Select>
+						
+						<Label id="idlblroom" text="{i18n>appusersltroom}" required="true"/>
+						<Select enabled="true" id="idroomselect"
+						forceSelection="true" items="{localModel>/ConfroomData}" change="Validation">
+							
+							<core:Item key="{localModel>Confroom}" text="{localModel>Confroom}"/>
+						</Select>
+						
+						<Label />
+						<Input id="idcustominpt" liveChange="customValidation" visible="false" required="true"/>
+						<Label id="idlblphno" text="{i18n>appusercntnubr}"/>
+						<Input  id="idinptpn" type="Number" maxDigit="10" placeholder="{i18n>numberplace}"/>
+						<!-- <Label id="idemail" text="{i18n>appuserEmail}"/>
+						<Input type="Email" placeholder="{i18n>emailplace}" id="idinputemail" liveChange="Validation" width="100%" required="true" change="validate"/> -->
+						
+						</f:content>
+					</f:SimpleForm>
+			</Panel>
+		</content>
+	</IconTabFilter>
+		
+	<IconTabSeparator/>
+	
+	<IconTabFilter icon="sap-icon://check-availability" iconColor="Positive" count="" 
+			text="{i18n>icontabfilterall}" key="AllReservations" tooltip="{i18n>IconTabFilterAll}">
+	<content>
+	
+	<!-- 	<f:SimpleForm id="allReservationsFormId"
+			editable="true"
+			layout="ResponsiveLayout"
+			maxContainerCols = "6"
+			class="titleAdjust">
+			<f:content>
+				<core:Title  />
+					<Label id="idlbllocationall" text="{i18n>appusersltlctn}" required="true"/>
+					<Select id="idlocationselectall" change="onLocationSelectall"
+						forceSelection="true" items="{localModel>/LocationsData}">
+						<core:Item key="{localModel>Location}" text="{localModel>Location}"/>
+					</Select>
+				<core:Title  />		
+					<Label id="idlblbuildingall" text="{i18n>appusersltbldng}" required="true"/>
+					<Select enabled="false" id="idBuildingselectall" change="onBuildingSelectall"
+						forceSelection="true" items="{localModel>/BuildingData}">
+						<core:Item key="{localModel>Building}" text="{localModel>Building}"/>
+					</Select>
+				<core:Title  />			
+				<Label id="idlblroomall" text="{i18n>appusersltroom}" required="true"/>
+				<Select enabled="false" id="idroomselectall" change = "onRoomSelectall"
+						forceSelection="true" items="{localModel>/ConfroomData}">
+						<core:Item key="{localModel>Confroom}" text="{localModel>Confroom}"/>
+				</Select>
+		</f:content>
+		</f:SimpleForm> -->
+	
+			
+					<!-- <VBox fitContainer="true" justifyContent="Start" alignItems="Start">
+					<items>
+					<HBox fitContainer="true" justifyContent="Start" alignItems="Center">
+					<items>
+					<Label id="idlbllocationall" text="{i18n>appusersltlctn}		:"/>
+						<Select id="idlocationselectall" change="onLocationSelectall"
+							forceSelection="true" items="{localModel>/LocationsData}">
+							<core:Item key="{localModel>Location}" text="{localModel>Location}"/>
+						</Select>
+					
+					</items>
+					</HBox>	
+					<HBox justifyContent="Start" alignItems="Center">
+					<items>
+						<Label id="idlblbuildingall" text="{i18n>appusersltbldng}	:"/>
+						<Select enabled="false" id="idBuildingselectall" change="onBuildingSelectall"
+						forceSelection="true" items="{localModel>/BuildingData}">
+							<core:Item key="{localModel>Building}" text="{localModel>Building}"/>
+						</Select>
+						</items>
+					</HBox>
+					<HBox alignItems="Center">
+						<Label id="idlblroomall" text="{i18n>appusersltroom}	:"/>
+						<Select enabled="false" id="idroomselectall"
+							forceSelection="true" items="{localModel>/ConfroomData}">
+							<core:Item key="{localModel>Confroom}" text="{localModel>Confroom}"/>
+						</Select>
+					</HBox> 
+					</items>
+					</VBox>-->
+					
+			<f:SimpleForm 
+			id="idallresform" 
+			labelMinWidth="192" 
+			adjustLabelSpan="true" 
+			maxContainerCols="2" 
+			
+			editable="true" 
+			layout="ResponsiveGridLayout" 
+			title="" 
+			emptySpanXL="0" 
+			emptySpanL="0" 
+			emptySpanM="0" 
+			emptySpanS="0"
+			columnsXL="3" 
+			columnsL="2" 
+			columnsM="2" 
+			singleContainerFullSize="false">
+			<f:content>
+				
+					<Label id="idlbllocationall" text="{i18n>appusersltlctn}"/>
+					<Select id="idlocationselectall" change="onLocationSelectall"
+						forceSelection="true" items="{localModel>/LocationsData}">
+						<core:Item key="{localModel>Location}" text="{localModel>Location}"/>
+					</Select>
+				
+					<Label id="idlblbuildingall" text="{i18n>appusersltbldng}"/>
+					<Select enabled="true" id="idBuildingselectall" change="onBuildingSelectall"
+						forceSelection="true" items="{localModel>/BuildingData}">
+						<core:Item key="{localModel>Building}" text="{localModel>Building}"/>
+					</Select>
+				<Label id="idlblroomall" text="{i18n>appusersltroom}" required="true"/>
+				<Select enabled="true" id="idroomselectall" change = "onRoomSelectall"
+						forceSelection="true" items="{localModel>/ConfroomData}">
+						<core:Item key="{localModel>Confroom}" text="{localModel>Confroom}"/>
+				</Select>
+				<Label />
+				<Input id="idinputall" visible="false" required="true" liveChange="inputValidation"/>
+				
+		</f:content>
+		</f:SimpleForm>
+			
+		<Panel>		
+		<!-- <PlanningCalendar visible = "false"
+			id="PC1"
+			showRowHeaders="true"
+			startDate="{path: 'localModel>/startDate'}"
+			viewKey="Day"
+			rows="{path: 'localModel>/people'}"
+			appointmentsVisualization="Filled"
+			appointmentSelect="handleAppointmentSelect"
+			intervalSelect="handleIntervalSelect"
+			showEmptyIntervalHeaders="true"
+			calss="Planingstyle">
+			<toolbarContent>
+				<Title text="{i18n>planingTitle}" titleStyle="H4"/>
+				<ToolbarSpacer/>
+				<ToggleButton icon="sap-icon://decrease-line-height"
+							  tooltip="Toggle Day Names Line"
+							  press="toggleDayNamesLine"/>
+			</toolbarContent>
+			<rows>
+				<PlanningCalendarRow
+				title="{localModel>name}"
+					appointments="{path : 'localModel>appointments', templateShareable: 'true'}"
+					intervalHeaders="{path : 'localModel>appointments', templateShareable: 'true'}">
+					<appointments>
+						<unified:CalendarAppointment
+							startDate="{localModel>allStartdate}"
+							endDate="{localModel>allEnddate}"
+							title="{localModel>Title}"
+							text="{localModel>Userid}"
+							type="Type01">
+						</unified:CalendarAppointment>
+					</appointments>
+									
+				</PlanningCalendarRow>
+			</rows>
+		</PlanningCalendar>  -->
+		
+		<PlanningCalendar
+			visible = "false"
+			id="PC1"
+			viewKey="Day"
+			showIntervalHeaders="false"
+			showEmptyIntervalHeaders="false"
+			appointmentsReducedHeight="true"
+			startDate="{path: 'localModel>/startDate'}"
+			rows="{path: 'localModel>/people'}"
+			appointmentsVisualization="Filled"
+			appointmentSelect="handleAppointmentSelect"
+			intervalSelect="handleIntervalSelect">
+			<toolbarContent>
+				<Title text="{i18n>planingTitle}" titleStyle="H4"/>
+			</toolbarContent>
+			<rows>
+				<PlanningCalendarRow
+					title="{localModel>name}"
+					appointments="{path : 'localModel>appointments', templateShareable: 'true'}">
+					<appointments>
+						<unified:CalendarAppointment
+							startDate="{localModel>allStartdate}"
+							endDate="{localModel>allEnddate}"
+							title="{localModel>Title}"
+							text="{localModel>Userid}">
+						</unified:CalendarAppointment>
+					</appointments>
+					
+				</PlanningCalendarRow>
+			</rows>
+		</PlanningCalendar>	
+		</Panel>
+	</content>
+	</IconTabFilter> 
+	
+	</items>
+	</IconTabBar>
+</content>
+
+<footer>
+	<Toolbar>
+		<ToolbarSpacer/>
+	<!--	<Button icon="sap-icon://print" tooltip="Add Filter" press="FilterbtnPress" type="Accept"/>-->
+			<Button visible="false" id="idcheckbtn" text="{i18n>checkbtnavilble}" press="onPressCheck" tooltip="{i18n>checkbttooltip}" enabled = "{localModel>/BookBtn}" class="checkAvailability"/>
+			<Button visible="false" id="idbookbtn" text="{i18n>BookBtn}" press="onPressBook" tooltip="{i18n>Bookbtntooltip}" enabled = "{localModel>/BookBtnenabled}" class="bookButton"/>
+			<Button visible="true" id="idupdatebtn" text="{i18n>updteBtn}" press="onPressUpdate" tooltip="{i18n>updtebtntooltip}" enabled = "{localModel>/DeleteBtn}" class="updateInfoButton"/>
+			<Button visible="true" id="iddeletebtn" text="{i18n>DlteBtn}" press="onPressDelete" tooltip="{i18n>Dltebtntooltip}" enabled = "{localModel>/DeleteBtn}" class="updateInfoButton"/>
+			
+									
+	</Toolbar>
+</footer>
+</Page>
+</core:View>

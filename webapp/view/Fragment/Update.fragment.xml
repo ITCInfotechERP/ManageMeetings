@@ -1,0 +1,168 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout">
+
+<Dialog title="Update Meeting Details" width = "500px" height = "600px">
+<!-- <VBox class="sapUiSmallMargin"> -->
+<content>
+<f:SimpleForm id="idupdateform" labelMinWidth="192" adjustLabelSpan="true" maxContainerCols="2" editable="true"
+			layout="ResponsiveGridLayout" title="" labelSpanL="3" labelSpanM="3" emptySpanL="4" 
+			emptySpanM="4" columnsL="2" columnsM="2">
+			<f:content>
+				<Label />
+				<CheckBox id="idcheckboxfrag" text="All Day Event" selected="{DialogModel>/dialogArray/0/Alldayevent}" activeHandling="true" select="handleSelectfrag" enabled = "{= ${DialogModel>/dialogArray/0/Rflag}?false:true}">
+				<layoutData><l:GridData span="L2 M2 S6" /></layoutData>
+				</CheckBox>
+				<CheckBox id="idreccheckfrag" text="Rucurrence" selected="{DialogModel>/dialogArray/0/Rflag}" activeHandling="true" select="handleSelectRecurrencefrag" enabled = "{= ${DialogModel>/dialogArray/0/Alldayevent}?false:true}">
+				<layoutData><l:GridData span="L3 M3 S6" /></layoutData>
+				</CheckBox>
+				<Label text="Title"/>
+				<Input id="idinputtitlefrag" maxLength="100" value="{DialogModel>/dialogArray/0/Title}"/>	
+				<!-- <Label text="Created Date"/>
+				<DatePicker id="idcreatedatefrag" valueFormat="yyyy-MM-dd" displayFormat="long" value="{/dialogArray/0/Createdate}"/> -->	
+				<Label text="Description"/>
+				<TextArea id="idinputdesfrag" maxLength="600" value="{DialogModel>/dialogArray/0/Description}"/>
+				<Label id="idlblstartdatefrag" text="Start Date"/>
+				<DatePicker id="idstrtdatefrg" valueFormat="yyyy-MM-dd" displayFormat="long" value="{DialogModel>/dialogArray/0/Startdate}"/>									
+				<Label  id="idlblenddatefrag" text="End Date"/>
+				<DatePicker id="idenddtefrag" valueFormat="yyyy-MM-dd" displayFormat="long" value="{DialogModel>/dialogArray/0/Enddate}" enabled = "{= ${DialogModel>/dialogArray/0/Alldayevent}?true:false}"/>
+				<Label text="Start Time"/>
+				<TimePicker id="idtimestartfrag" width="100%" valueFormat="hh:mm a" minutesStep="15" enabled = "{= ${DialogModel>/dialogArray/0/Alldayevent}?false:true}"
+					displayFormat="hh:mm a" placeholder="Enter Start Time ..." class="sapUiSmallMarginBottom" value="{DialogModel>/dialogArray/0/Starttime}"/>
+				<Label text="End Time"/>
+				<TimePicker id="idtimeendfrag" valueFormat="hh:mm a" minutesStep="15"
+				displayFormat="hh:mm a" width="100%" placeholder="Enter End Time ..." class="sapUiSmallMarginBottom" value="{DialogModel>/dialogArray/0/Endtime}" enabled = "{= ${DialogModel>/dialogArray/0/Alldayevent}?false:true}"/>
+				
+						<Label/>
+						<RadioButton id="idradio1frag" groupName="GroupA" text="Daily" visible = "{= ${DialogModel>/dialogArray/0/Rflag}?true:false}" selected="false" select="radio1Selectfrag">
+						<layoutData><l:GridData span="L3 M3 S4" /></layoutData>
+						</RadioButton>
+						<RadioButton id="idradio2frag" groupName="GroupA" text="Weekly" visible = "{= ${DialogModel>/dialogArray/0/Rflag}?true:false}" selected="false" select="radio2Selectfrag">
+						<layoutData><l:GridData span="L3 M3 S7" /></layoutData>
+						</RadioButton>
+						
+						<Label/>
+						<RadioButton id="idradiodaily1frag" text="Every" selected="false" groupName="GroupB" visible="false" select="radiodaily1Selectfrag">
+						<layoutData><l:GridData span="L2 M2 S6" /></layoutData>
+						</RadioButton>
+						<Input id="iddailyinputfrag" value="1" visible="false">
+						<layoutData><l:GridData span="L2 M2 S4" /></layoutData>
+						</Input>
+						<Text id="idtxtinputfrag" text="day" visible="false">
+						<layoutData><l:GridData span="L1 M1 S2" /></layoutData>
+						</Text>
+						<Label/>
+						<RadioButton id="idradiodaily2frag" groupName="GroupB" text="Every WeekDay" visible="false" select="radiodaily2Selectfrag"/>
+						
+						
+						<Label/>
+						<Text id="idweektextfrag" text="Every" visible="false">
+						<layoutData><l:GridData span="L1 M1 S2" /></layoutData>
+						</Text>
+						<Input id="idtextweekfrag" value="1" visible="false">
+						<layoutData><l:GridData span="L2 M2 S4" /></layoutData>
+						</Input>
+						<Text id="idtextweekonfrag" text="week on" visible="false">
+						<layoutData><l:GridData span="L2 M2 S4" /></layoutData>
+						</Text>
+						<Label/>
+						<CheckBox id="idmonfrag" text="Monday" visible="false">
+						<layoutData><l:GridData span="L1 M1 S6" /></layoutData>
+						</CheckBox>
+						<CheckBox id="idtuefrag" text="Tuesday" visible="false">
+						<layoutData><l:GridData span="L1 M1 S6" /></layoutData>
+						</CheckBox>
+						<Label/>
+						<CheckBox id="idwedfrag" text="Wednesday" visible="false">	
+						<layoutData><l:GridData span="L1 M1 S6" /></layoutData>
+						</CheckBox>
+						<CheckBox id="idthufrag" text="Thursday" visible="false">
+						<layoutData><l:GridData span="L1 M1 S6" /></layoutData>
+						</CheckBox>
+						<Label/>			
+						<CheckBox id="idfrifrag" text="Friday" visible="false">
+						<layoutData><l:GridData span="L1 M1 S6" /></layoutData>
+						</CheckBox>
+						<CheckBox id="idsatfrag" text="Saturday" visible="false">
+						<layoutData><l:GridData span="L1 M1 S6" /></layoutData>
+						</CheckBox>
+						<Label/>
+						<CheckBox id="idsunfrag" text="Sunday" visible="false">
+						<layoutData><l:GridData span="L1 M1 S6" /></layoutData>
+						</CheckBox>
+						
+						
+				<!-- <CheckBox id="iddailyfrag" text="{DialogModel>/dialogArray/0/Rpattern}" selected="{= ${DialogModel>/dialogArray/0/Rflag}?false:true}" visible = "{= ${DialogModel>/dialogArray/0/Rflag}?true:false}"/>
+				<CheckBox id="idweekfrag" text="{DialogModel>/dialogArray/0/Rpattern}" selected="{= ${DialogModel>/dialogArray/0/Rflag}?true:false}" visible = "{= ${DialogModel>/dialogArray/0/Rflag}?true:false}"/> -->
+				<!-- <Label/>
+				<RadioButton id="idradiodaily1frag" selected="{DialogModel>/dialogArray/0/Rflag}" groupName="GroupB" text="{DialogModel>/dialogArray/0/Rflag}" visible="{= ${DialogModel>/dialogArray/0/Rflag}?true:false}" select="radiodaily1Selectfrag">
+				</RadioButton>
+				<Input id="iddailyinputfrag" value="{DialogModel>/dialogArray/0/Rpattern}" visible="{= ${DialogModel>/dialogArray/0/Rflag}?true:false}">
+				</Input>
+				<Text id="idtxtinputfrag" text="{DialogModel>/dialogArray/0/Rpattern}" visible="{= ${DialogModel>/dialogArray/0/Rflag}?true:false}">
+				</Text>
+				<Label/>
+				<RadioButton id="idradiodaily2frag" groupName="GroupB" text="{DialogModel>/dialogArray/0/Rpattern}" visible="{= ${DialogModel>/dialogArray/0/Rflag}?true:false}" select="radiodaily2Selectfrag"/> -->
+					<!-- 	<Label/>
+						<Text id="idweektextfrag" text="{DialogModel>/dialogArray/0/Rrule}" visible="{= ${DialogModel>/dialogArray/0/Rpattern}?true:false}">
+						</Text>
+						<Input id="idtextweekfrag" value="{DialogModel>/dialogArray/0/Rrule}" visible="{= ${DialogModel>/dialogArray/0/Rpattern}?true:false}">
+						</Input>
+						<Text id="idtextweekonfrag" text="{DialogModel>/dialogArray/0/Rrule}" visible="{= ${DialogModel>/dialogArray/0/Rpattern}?true:false}">
+						</Text>
+						<Text/>
+						<Label/>
+						<CheckBox id="idmon" text="Monday" visible="false"/>
+						<CheckBox id="idtue" text="Tuesday" visible="false"/>
+						<Label/>
+						<CheckBox id="idwed" text="Wednesday" visible="false"/>	
+						<CheckBox id="idthu" text="Thursday" visible="false"/>
+						<Label/>			
+						<CheckBox id="idfri" text="Friday" visible="false"/>
+						<CheckBox id="idsat" text="Saturday" visible="false"/>
+						<Label/>
+						<CheckBox id="idsun" text="Sunday" visible="false"/> -->
+						
+				<!-- <Label text="RPattern"/>
+				<Input id="idrpattern" value="{DialogModel>/dialogArray/0/Rpattern}" visible = "{= ${DialogModel>/dialogArray/0/Rflag}?true:false}"/>
+				<Label text="Rrule"/>
+				<Input id="idrrule" value="{DialogModel>/dialogArray/0/Rrule}" visible = "{= ${DialogModel>/dialogArray/0/Rflag}?true:false}"/> -->
+						
+				<Label text="Location"/>
+				<Select id="idlocationselectfrag" change="onLocationSelect"
+						forceSelection="true" selectedKey="{DialogModel>/dialogArray/0/Location}" items="{DialogModel>/LocationsData}">
+							<core:Item key="{DialogModel>Location}" text="{DialogModel>Location}"/>
+						</Select>
+				<!-- <Input id="id5" value="{/dialogArray/0/Location}"/> -->
+				<Label text="Building"/>
+				<Select enabled="true" id="idBuildingselectfrag" change="onBuildingSelect"
+				forceSelection="true" selectedKey="{DialogModel>/dialogArray/0/Building}" items="{DialogModel>/BuildingData}">
+							<core:Item key="{DialogModel>Building}" text="{DialogModel>Building}"/>
+						</Select>
+				<!-- <Input id="id6" value="{/dialogArray/0/Building}"/> -->
+				<Label text="Conference Room"/>
+				<Select enabled="true" id="idroomselectfrag"
+						forceSelection="true" change="onroomselectfrag" selectedKey="{DialogModel>/confroomselectedkey}" items="{DialogModel>/ConfroomData}" >
+							<core:Item key="{DialogModel>Confroom}" text="{DialogModel>Confroom}"/>
+						</Select>
+				<Input id="idcustominpufrag" value="{DialogModel>/dialogArray/0/Confroom}" visible="{DialogModel>/inputVisible}"/>
+				
+				<!-- <Input id="id7" value="{/dialogArray/0/Confroom}"/> -->
+				<!-- <Label text="E-Mail"/>
+				<Input id="idmailfrag" value="{DialogModel>/dialogArray/0/Email}" change="validatefrag"/> -->
+				<Label text="Contact Number"/>
+				<Input id="idconnumfrag" value="{DialogModel>/dialogArray/0/Contactnum}"/>
+				
+						
+		</f:content>
+		</f:SimpleForm>
+
+
+</content>
+		<buttons>
+			<!-- <Button id="idonPressCheck" text="Check Availability" press="onPresssubmitCheck"/> -->
+			<Button id="idbtnupdatesubmit" text="Submit" press="onBtnupdateSubmit"/>
+			<Button text="Close" press="onClose" />
+		</buttons>
+		
+</Dialog>
+<!-- </VBox> -->
+</core:FragmentDefinition>
