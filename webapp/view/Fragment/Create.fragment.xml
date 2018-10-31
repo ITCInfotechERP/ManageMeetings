@@ -1,0 +1,61 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	
+	<Dialog title="" width = "500px" height = "600px">
+		<content>
+		<f:SimpleForm 
+			id="idnewresformcreate" 
+			labelMinWidth="192" 
+			adjustLabelSpan="true" 
+			maxContainerCols="4" 
+			editable="true" 
+			layout="ResponsiveGridLayout" 
+			title="" 
+			emptySpanXL="0" 
+			emptySpanL="0" 
+			emptySpanM="0" 
+			emptySpanS="0"
+			columnsXL="4" 
+			columnsL="2" 
+			columnsM="2" 
+			class="titleAdjust"
+			singleContainerFullSize="false">
+			
+						<f:content>						
+						<core:Title/>
+						<Label />
+						<CheckBox id="idcheckboxcreate" text="All Day Event" selected="false" activeHandling="true" select="handleSelectCreate"/>
+						<Label id="idlbltitlecreate" text="Title"/>
+						<Input id="idinpttitlecreate" maxLength="100" placeholder="Enter Meeting Title" width="100%" required="true"/>																		
+						<Label id="idlbldescreate" text="Description"/>
+						<TextArea id="idinptdescreate" placeholder="Enter Meeting Description" maxLength="600" width="100%"/>
+						<Label id="idlabpncreate" text="Contact Number"/>
+						<Input  id="idinptpncreate" type="Number" maxDigit="10" placeholder="Enter Contact Number"/>
+						
+						<core:Title/>
+						<Label id="idlblstartdatecreate" text="Start Date"/>
+						<DatePicker id="idstartdatecreate" valueFormat="yyyy-MM-dd" displayFormat="long" change="Validation"/>
+						<Label id="idlblbookdatecreate" text="End Date"/>
+						<DatePicker id="idbookdatecreate" valueFormat="yyyy-MM-dd" displayFormat="long" change="Validation" enabled="true"/>
+						<Label id="idlblstartcreate" text="Start Time"/>		
+						<TimePicker id="idtimestartcreate" valueFormat="hh:mm a" minutesStep="15"
+						displayFormat="hh:mm a" placeholder="Enter Start Time" change="Validation"/>
+						<Label id="idlblendcreate" text="End Time"/>
+						<TimePicker id="idtimeendcreate" valueFormat="hh:mm a" minutesStep="15"
+						displayFormat="hh:mm a" width="100%" placeholder="Enter End Time" class="sapUiSmallMarginBottom" change="Validation"/>
+					 				
+						
+						</f:content>
+					</f:SimpleForm>
+		
+		
+		</content>
+		<buttons>
+			<Button text="Create Meeting" press="onPressBookCreate"/>
+			<Button text="Cancel" press="onClosecreate" />
+		</buttons>
+		
+	</Dialog>
+	
+	
+	
+</core:FragmentDefinition>

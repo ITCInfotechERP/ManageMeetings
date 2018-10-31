@@ -1,0 +1,68 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" xmlns:f="sap.ui.layout.form">
+	
+	<Dialog title="" width = "500px" height = "600px">
+		<content>
+		<f:SimpleForm 
+			id="idrecurform" 
+			labelMinWidth="192" 
+			adjustLabelSpan="true" 
+			maxContainerCols="4" 
+			editable="true" 
+			layout="ResponsiveGridLayout" 
+			title="" 
+			emptySpanXL="0" 
+			emptySpanL="0" 
+			emptySpanM="0" 
+			emptySpanS="0"
+			columnsXL="4" 
+			columnsL="2" 
+			columnsM="2" 
+			class="titleAdjust"
+			singleContainerFullSize="false">
+			
+						<f:content>						
+						<core:Title/>
+										
+						<Label/>
+						<CheckBox id="idreccheck" text="Recurrence Pattern" select="handleSelectRecurrence"/>
+						<Label/>
+						<RadioButton id="idradio1" groupName="GroupA" text="Daily" visible="false" select="radio1Select"/>
+						<RadioButton id="idradio2" groupName="GroupA" text="Weekly" visible="false" select="radio2Select"/>
+						<Label/>
+						<RadioButton id="idradiodaily1" selected="true" groupName="GroupB" text="Every" visible="false" select="radiodaily1Select"/>
+						<Input id="iddailyinput" value="1" visible="false"/>
+						<Text id="idtxtinput" text="day(s)" visible="false"/>
+						<Label/>
+						<RadioButton id="idradiodaily2" groupName="GroupB" text="Every Week Day" visible="false" select="radiodaily2Select"/>
+						<Label/>
+						<Text id="idweektext" text="Recur Every" visible="false"/>
+						<Input id="idtextweek" value="1" visible="false"/>
+						<Text id="idtextweekon" text="week(s) on:" visible="false"/>
+						<Label/>
+						<CheckBox id="idsun" text="Sunday" visible="false"/>
+						<CheckBox id="idmon" text="Monday" visible="false"/>
+						<Label/>
+						<CheckBox id="idtue" text="Tuesday" visible="false"/>						
+						<CheckBox id="idwed" text="Wednesday" visible="false"/>	
+						<Label/>			
+						<CheckBox id="idthu" text="Thursday" visible="false"/>
+						<CheckBox id="idfri" text="Friday" visible="false"/>
+						<Label/>
+						<CheckBox id="idsat" text="Saturday" visible="false"/>
+						
+					
+						</f:content>
+					</f:SimpleForm>
+		
+		
+		</content>
+		<buttons>
+			<Button text="Ok" press="onPressrecurr"/>
+			<Button text="Cancel" press="onCloserecurr" />
+		</buttons>
+		
+	</Dialog>
+	
+	
+	
+</core:FragmentDefinition>
